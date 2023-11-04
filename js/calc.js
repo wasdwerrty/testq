@@ -8,10 +8,6 @@ const action = ['-','+','*','/',];
 
 const out = document.querySelector('.calc-screen p')
 
-function toFixed(value) {
-    var power = Math.pow(10, 14);
-    return String(Math.round(value * power) / power);
-  }
 function clearAll()
 {
     a = '';
@@ -57,16 +53,16 @@ document.querySelector('.buttons').onclick = (event) => {
         if(b === '') b = a;
         switch(sign){
             case "+":
-                a = (+a) + (+b);
+                a = ((+a) + (+b)).toFixed(4);
                 break;
             case "-":
                 a = (a - b).toFixed(4);
                 break;
             case "*":
-                a = a * b;
+                a = (a * b).toFixed(4);
                 break;
             case "/":
-                a = a / b;
+                a = (a / b).toFixed(4);
                 break;
         }
         finish = true;
