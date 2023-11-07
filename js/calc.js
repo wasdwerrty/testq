@@ -16,24 +16,35 @@ function clearAll()
     finish = false;
     out.textContent = 0;
 }
+const button = document.querySelector(".dot");
 document.querySelector('.ac').onclick=clearAll;
+
 document.querySelector('.buttons').onclick = (event) => {
    if(!event.target.classList.contains('btn')) return;
    if(event.target.classList.contains('ac')) return;
     out.textContent = '';
     const key = event.target.textContent;
-
+    
     if(digit.includes(key)){
         if(b === '' && sign === ''){
-            a+=key;
+            if(a.includes(".") && key === "."){
+                button.disabled = true;
+            }
+            else a+=key;
         out.textContent = a;
         }
         else if (a!=='' && b!=='' && finish){
+            if(b.includes(".") && key === "."){
+                button.disabled = true;
+            }
+            else
             b = key;
             finish = false;
             out.textContent = b;
         }
-        else {
+        else { if(b.includes(".") && key === "."){
+            button.disabled = true;
+        }else
             b += key;
             out.textContent =b ;
         }
@@ -48,6 +59,7 @@ document.querySelector('.buttons').onclick = (event) => {
         console.log(a,b, sign);
         return;
     }
+    
     if(key === '=')
     {
         if(b === '') b = a;
@@ -64,7 +76,7 @@ document.querySelector('.buttons').onclick = (event) => {
             case "/":
                 a = (a / b).toFixed(4);
                 break;
-        }
+            }
         finish = true;
         out.textContent = a;
         
@@ -73,3 +85,4 @@ document.querySelector('.buttons').onclick = (event) => {
 
 
 }
+
